@@ -17,7 +17,6 @@ As a mathematics teacher, I decided to investigate different factors that impact
 ```{r}
 library(ggplot2)
 library(ggthemes)
-library(viridis)
 data1 <- read.csv('student-mat.csv') 
 data1$G3[data1$G3 == 0] <- NA
 data <- na.omit(data1)
@@ -27,13 +26,13 @@ I was interested in the effect of school absences on student achievement for bot
 
 ```{r message = F}
 p_math <- ggplot(data = data, mapping = aes(x = absences, y = G3, color=sex)) + #created mapping 
-  geom_jitter(shape = 15) + #add jittered points to help with discrete data
+  geom_jitter(shape = 16) + #add jittered points to help with discrete data
   geom_smooth(method = "loess", formula = y~x, alpha = 0.5) + #add smoothing layer
   theme_stata(base_size = 10) + #add theme and base font size
   ylab("End of Year Grade in Mathematics") +
   xlab("Number of Absences") +
   guides(color=guide_legend(title="Gender")) +
-  theme(legend.position = c(0.9, 0.8)) +
+  theme(legend.position = c(0.91, 0.82)) +
   ggtitle("Impact of Absenteeism on Mathematics End-of-Year Grades")
 p_math
 ```
