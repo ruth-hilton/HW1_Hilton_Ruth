@@ -18,13 +18,14 @@ As a mathematics teacher, I decided to investigate different factors that impact
 library(ggplot2)
 library(ggthemes)
 library(viridis)
-data <- read.csv('student-mat.csv') 
-data$G3[data$G3 == 0] <- NA
+data1 <- read.csv('student-mat.csv') 
+data1$G3[data1$G3 == 0] <- NA
+data <- na.omit(data1)
 ```
 
 I was interested in the effect of school absences on student achievement for both male and female students, and visualized it with the plot below. I used a jitter plot to help show distinct points of this discrete data set.
 
-```{r}
+```{r message = F}
 p_math <- ggplot(data = data, mapping = aes(x = absences, y = G3, color=sex)) + #created mapping 
   geom_jitter(shape = 15) + #add jittered points to help with discrete data
   geom_smooth(method = "loess", formula = y~x, alpha = 0.5) + #add smoothing layer
